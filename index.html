@@ -145,5 +145,36 @@
             </a>
         </form>
     </div>
+
+    <script>
+        const form = document.querySelector('.Login');
+        const message = document.createElement('p');
+        message.style.color = 'red';
+        form.appendChild(message);
+
+        const users = [
+            { username: 'malone', password: 'teste' },
+            { username: 'ReVeN', password: 'color' }
+            // Adicione mais usuários aqui
+        ];
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const formData = new FormData(form);
+            const enteredUsername = formData.get('username');
+            const enteredPassword = formData.get('password');
+
+            const user = users.find(u => u.username === enteredUsername && u.password === enteredPassword);
+
+            if (user) {
+                message.textContent = 'Login bem-sucedido';
+                // Aqui você pode redirecionar o usuário para outra página ou realizar outras ações após o login bem-sucedido
+            } else {
+                message.textContent = 'Credenciais inválidas';
+            }
+        });
+    </script>
+    
 </body>
 </html>
